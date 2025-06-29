@@ -1,3 +1,6 @@
+#ifndef LISTA_HPP
+#define LISTA_HPP
+
 #include <initializer_list>
 #include <iostream>
 
@@ -87,6 +90,29 @@ public:
     }
     
     void push_front();
+
+    void pop_front();
+
+    void pop_back();
+
+    void erase(int index); // apaga o item deste index
+
+    void erase(dataT data); // apaga o primeiro item com o data
+
+    void eraseAll(dataT data). // apaga todos os elementos com data
+
+    dataT find(int index) {
+        
+    }
+
+    bool empty() {
+        if(numNodes==0) return true;
+        return false; 
+    }
+
+    int size() {
+        return numNodes;
+    }
     
     list operator = (list otherList) {
         if(this == &otherList) return *this;
@@ -124,3 +150,4 @@ public:
     }
 
 };
+#endif
