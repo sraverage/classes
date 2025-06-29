@@ -8,9 +8,9 @@ template<typename dataT>
 class node {
 public:
     dataT data;
-    node<dataT>* nextNode;
-    node<dataT>* previousNode;    
-    node(dataT dataParam) : data(dataParam), nextNode(nullptr), previousNode(nullptr) {}
+    node<dataT>* nextNode = nullptr;
+    node<dataT>* previousNode = nullptr;    
+    node(dataT dataParam) : data(dataParam) {}
 };
 
 template<typename dataT>
@@ -62,6 +62,43 @@ public:
         this->clean();
     }
 
+    class iterador {
+    private:
+        node<dataT>* currentNode;
+    public:
+        iterador(node<dataT>* node) : currentNode(node) {}
+
+        // operador de referencia, para pegar o conteudo daquele iterador, o dataT
+        dataT& operator*() const {
+            return currentNode->data;
+        }
+        
+        // operador de avançar na lista, retorna o proximo iterador ou nullptr quando o ultimo
+        iterador& operator++() {
+            if(currentNode != nullptr) {
+                currentNode = currentNode->nextNode;
+            }
+            return *this;
+        }
+
+        bool operator==(const iterador& otherIterador) const {
+            return currentNode == otherIterador.currentNode;
+        }
+
+        bool operator!=(const iterador& otherIterador) const {
+            return !(currentNode==otherIterador.currentNode);
+        }
+
+    };
+
+    iterador begin() {
+        return iterador(head);
+    }
+
+    iterador end() {
+        return iterador(tail->nextNode);
+    }
+
     void clean() {
         node<dataT>* auxNode; 
         while (head != nullptr) {
@@ -101,9 +138,7 @@ public:
 
     void eraseAll(dataT data). // apaga todos os elementos com data
 
-    dataT find(int index) {
-        
-    }
+    dataT find(int index) {}
 
     bool empty() {
         if(numNodes==0) return true;
