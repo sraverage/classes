@@ -14,7 +14,7 @@ public:
     std::string get_function_string() const;
 
 private:
-    std::string ln_to_log(std::string func);  
+    std::string pt_br(std::string func);  
     bool compile_expression_internal(const std::string& expression_str);
 
     struct Impl;

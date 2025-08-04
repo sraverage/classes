@@ -20,7 +20,7 @@ fx::~fx() {
 }
 
 bool fx::compile_expression_internal(const std::string& expression_str) {
-    _function_string = ln_to_log(expression_str);
+    _function_string = pt_br(expression_str);
     _x_var_ref = 0.0;
 
     pimpl->symbol_table.clear();
@@ -39,10 +39,19 @@ bool fx::compile_expression_internal(const std::string& expression_str) {
     }
 }
 
-std::string fx::ln_to_log(std::string str) {
-    const std::string de = "ln";
-    const std::string para = "log";
+std::string fx::pt_br(std::string str) {
+    std::string de = "ln";
+    std::string para = "log";
     size_t pos=0;
+    
+    while ((pos = str.find(de, pos)) != std::string::npos) {
+        str.replace(pos, de.length(), para);
+        pos += para.length();
+    }
+    
+    de = "sen";
+    para = "sin";
+    pos = 0;
     
     while ((pos = str.find(de, pos)) != std::string::npos) {
         str.replace(pos, de.length(), para);
@@ -60,7 +69,7 @@ double fx::operator()(double x_value) {
 
 fx& fx::operator=(const fx& outro) {
     if (this != &outro) {
-        compile_expression_internal(outro._function_string);
+        compile_expression_internal(outro.get_function_string());
     }
     return *this;
 }

@@ -1,13 +1,14 @@
 #include <iostream>
-#include "integral.hpp"
+#include "soma_de_trapezios.hpp"
+#include "fx.hpp"
 #include <cmath>
 using namespace std;
 
 
 int main() {
-    string func = "cos(x)";
+    fx func("tan(x)");
     double a = 0;
-    double b = M_PI;
+    double b = 10000000000;
     cout << "Integral: " << soma_de_trapezios(func, a, b) << endl;
 
     return 0;
