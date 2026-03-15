@@ -1,0 +1,15 @@
+PARA IMPLEMENTAR:
+
+    -Tornar a fatoração QR cubica. A fatoração QR agora é O(N^4), pois eu
+        monto os refletores de forma explicita.
+
+    -Fazer a fase de pré-processamento na fatoração espectral. Atualmente
+        o algoritmo só possui a parte iterativa, é preciso tornar a matriz
+        uma hessenberg superior. (triangular sup com uma diagonal a mais).
+
+    -Implementar os shifters na fatoração espectral. Com os shifters 
+        implementados na fase iterativa da fatoração, o processo de
+        convergencia é acelerado.
+
+    -Implementar a bidiagonalização na fatoração SVD para deixar
+        o algoritmo mais barato.
