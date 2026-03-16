@@ -4,6 +4,7 @@
 #include "matriz.hpp"
 #include <string>
 #include <sstream>
+#include <cmath>
 
 Matriz<long double> get_vetor(const Matriz<long double>& A, int coluna, int linha=0) {
     // copia da matriz um vetor, sobre um index na matriz.
@@ -29,10 +30,10 @@ inline long double norma_vetorial(const Matriz<long double>& A, long double p) {
 
     long double sum = 0.0L;
     for(int i=0; A.N>i; i++) {
-        sum += std::powl(modulo(A[i][0]), p);
+        sum += std::pow(modulo(A[i][0]), p);
     }
 
-    return std::powl(sum, 1.0L/p);
+    return std::pow(sum, 1.0L/p);
 }
 
 inline long double norma_frobenius(const Matriz<long double>& A) {
@@ -43,7 +44,7 @@ inline long double norma_frobenius(const Matriz<long double>& A) {
         }
     }
 
-    return std::sqrtl(sum);
+    return std::sqrt(sum);
 }
 
 inline long double norma_matricial_1(const Matriz<long double>& A) { //coluna de maior norma 1

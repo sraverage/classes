@@ -83,6 +83,9 @@ inline const QΛQ fatoracao_espectral(const Matriz<long double>& A, bool print=f
     if(!A.eh_quadrada()) {    
         std::cout << "Não se pode fazer fatoração espetral de uma matriz não quadrada.\n";
         throw "Erro";
+    } else if(!A.eh_simetrica()) {
+        std::cout << "Não se pode fazer fatoração espetral real em uma matriz não simetrica.\n";
+        throw "Erro";
     }
 
     Hessenberg hessen = hessenberg(A);
@@ -103,7 +106,7 @@ inline const QΛQ fatoracao_espectral(const Matriz<long double>& A, bool print=f
             if(norma_lin <= erro) break; // Condição de parada
             
             long double shift = 42;//calculo_do_shift(espectro, m, norma_lin);
-            std::cout << "Shifter: " << shift << "\n";
+            //std::cout << "Shifter: " << shift << "\n";
             Matriz<long double> matriz_deslocada = espectro - (I*shift);
             aux = fatoracao_QR(matriz_deslocada, false);
             espectro = (aux.R * aux.Q) + (I*shift);
@@ -128,7 +131,7 @@ inline const QΛQ fatoracao_espectral(const Matriz<long double>& A, bool print=f
     
     QΛQ resposta(Q, espectro, A);
 
-    if(true)std::cout << "\nNumero de iterações: " << num_fatoracoes_global << "\n \n";
+    if(print)std::cout << "\nNumero de iterações: " << num_fatoracoes_global << "\n \n";
     
     return resposta;
 }
